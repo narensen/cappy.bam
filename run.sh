@@ -1,0 +1,2 @@
+echp "Opening Cappy"
+python

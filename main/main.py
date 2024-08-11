@@ -3,7 +3,12 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision.datasets import CocoCaptions
 from torchvision import transforms
-from attentions import ImageCaptioningModel, model, tokenizer
+from attentions import ImageCaptioningModel, model, tokenizer, device
+
+import os
+os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
+
+model = model.to(device)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
@@ -70,9 +75,9 @@ for epoch in range(num_epochs):
             captions = [cap[0] for cap in captions]
             
             outputs = model(images, captions)
-            target_captions = tokenizer(captions, padding=True, truncation=True, return_tensors="pt").input_ids.to(device)
-            
+            target_captions = tokenizer(captions, padding=True, truncation=True, return_tensors="pt", max_length=50).input_ids.to(device)
             loss = criterion(outputs.view(-1, outputs.size(-1)), target_captions.view(-1))
+
             val_loss += loss.item()
         
         avg_val_loss = val_loss / len(val_loader)

@@ -69,7 +69,7 @@ class ImageCaptioningModel(nn.Module):
         self.encoder = encoder
         self.decoder = decoder
         self.tokenizer = tokenizer
-        self.max_length = max_length
+        self.max_length = max_length  # Define max_length here
         self.fc = nn.Linear(1280, self.decoder.bert.config.hidden_size)
 
     def forward(self, images, captions=None):
@@ -104,6 +104,8 @@ class ImageCaptioningModel(nn.Module):
         
         return input_ids
 
+ # Set your desired max length for captions
+
 # Initialize components
 pretrained_effnet = EfficientNet.from_pretrained('efficientnet-b0')
 encoder = AttentionEfficientNet(pretrained_effnet, ChannelAttention(1280, 16), SpatialAttention()).to(device)
@@ -112,9 +114,11 @@ bert_config = BertConfig.from_pretrained('bert-base-uncased')
 decoder = TransformerDecoder(bert_config).to(device)
 
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+# Set your desired max length for captions
+max_caption_length = 50
 
-# Create the full model
-model = ImageCaptioningModel(encoder, decoder, tokenizer, max_length=50).to(device)
+# Instantiate the ImageCaptioningModel
+model = ImageCaptioningModel(encoder, decoder, tokenizer, max_length=max_caption_length).to(device)
 
 # If you have multiple GPUs and want to use DataParallel
 if torch.cuda.device_count() > 1:

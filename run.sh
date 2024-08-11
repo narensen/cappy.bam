@@ -1,2 +1,2 @@
 echp "Opening Cappy"
-python
+python /main/main.py

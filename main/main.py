@@ -5,9 +5,6 @@ from torchvision.datasets import CocoCaptions
 from torchvision import transforms
 from attentions import ImageCaptioningModel, model, tokenizer, device
 
-import os
-os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
-
 model = model.to(device)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

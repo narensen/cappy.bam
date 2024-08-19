@@ -1,4 +1,4 @@
-# Image Captioning with Attention
+# Image Captioning using CBAM
 
 This repository contains an implementation of an Image Captioning model that utilizes attention mechanisms for generating captions for images. The model is built using PyTorch and incorporates an EfficientNet encoder and a Transformer-based decoder.
 

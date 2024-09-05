@@ -1,5 +1,4 @@
-# Image Captioning using CBAM and BERT
-
+# Image Captioning
 This repository contains an implementation of an Image Captioning model that utilizes attention mechanisms for processing captions for images. The model is built using PyTorch and incorporates an EfficientNet encoder and a Transformer-based decoder.
 
 Image captioning is the process of generating textual descriptions for images. It combines techniques from computer vision and natural language processing to provide meaningful captions. This project uses a combination of an EfficientNet encoder for feature extraction and a Transformer-based decoder for generating captions, with an attention mechanism to focus on different parts of the image during caption generation.

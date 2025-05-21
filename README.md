@@ -44,6 +44,5 @@ image = load_image('path/to/image.jpg')
 
 # Generate caption
 caption = model.generate_caption(image)
-print("Generated Caption:", caption)
 ```
 
